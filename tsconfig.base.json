@@ -1,0 +1,26 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@soflux/api/config": ["libs/api/config/src/index.ts"],
+      "@soflux/ui/features/user": ["libs/ui/features/user/src/index.ts"],
+      "@soflux/ui/shared/domain": ["libs/ui/shared/domain/src/index.ts"],
+      "@soflux/ui/shared/services": ["libs/ui/shared/services/src/index.ts"],
+      "@soflux/ui/shared/store": ["libs/ui/shared/store/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

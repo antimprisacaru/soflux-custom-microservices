@@ -1,0 +1,84 @@
+Entities and Tables:
+
+Users:
+
+user_id (Primary Key)
+username
+email
+password_hash (or OAuth token for social media sign-in)
+user_type (Company or Influencer)
+Other user-related fields (e.g., profile picture, bio)
+Companies:
+
+company_id (Primary Key)
+user_id (Foreign Key referencing Users)
+company_name
+industry
+contact_info
+Other company-related fields (e.g., campaign history)
+Influencers:
+
+influencer_id (Primary Key)
+user_id (Foreign Key referencing Users)
+influencer_name
+niche
+follower_demographics
+Other influencer-related fields (e.g., engagement metrics)
+Campaigns:
+
+campaign_id (Primary Key)
+company_id (Foreign Key referencing Companies)
+title
+description
+budget
+target_audience
+content_requirements
+campaign_duration
+status (e.g., Pending, Active, Completed)
+Collaborations:
+
+collaboration_id (Primary Key)
+campaign_id (Foreign Key referencing Campaigns)
+influencer_id (Foreign Key referencing Influencers)
+proposal (Influencer's proposal for the campaign)
+contract (Link to the digital contract)
+status (e.g., Pending, Active, Completed)
+Messages:
+
+message_id (Primary Key)
+sender_id (Foreign Key referencing Users)
+receiver_id (Foreign Key referencing Users)
+content
+timestamp
+Payments:
+
+payment_id (Primary Key)
+collaboration_id (Foreign Key referencing Collaborations)
+amount
+payment_date
+payment_status
+Reviews:
+
+review_id (Primary Key)
+reviewer_id (Foreign Key referencing Users)
+reviewee_id (Foreign Key referencing Users)
+rating
+comment
+timestamp
+Social Media Integration:
+
+You may need additional tables to store data related to social media accounts, posts, and analytics, depending on the depth of integration with social media platforms (e.g., Facebook, Instagram, Twitter).
+Relationships:
+
+Users have a one-to-one relationship with either Companies or Influencers.
+Companies can have many Campaigns, while each Campaign belongs to one Company.
+Influencers can participate in many Collaborations, and each Collaboration involves one Influencer.
+Messages are sent by Users and received by Users, establishing a many-to-many relationship between Users.
+Payments are associated with Collaborations, connecting Payments to Campaigns and Influencers.
+Reviews are left by Users for other Users, creating a many-to-many relationship between Users.
+Social Media Integration:
+
+To integrate with social media platforms, you may need additional tables to store tokens, access keys, and data fetched from these platforms.
+Each Influencer and Company profile may have links to their social media profiles.
+Social media posts and engagement data can be linked to specific campaigns or influencers.
+This database schema provides a foundation for your social media marketing app, accommodating user profiles, campaigns, collaborations, payments, messages, reviews, and potential social media integrations. Keep in mind that the specific requirements and complexities of social media integrations can vary depending on the platforms you choose to integrate with, so further customization may be needed. It's also essential to implement proper security measures to protect user data, especially when integrating with external services.

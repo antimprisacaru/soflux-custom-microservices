@@ -1,0 +1,107 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id               Int         @id
+  username         String      @unique
+  email            String      @unique
+  passwordHash     String
+  userType         UserType
+  Company          Company?    @relation("Company")
+  Influencer       Influencer? @relation("Influencer")
+  SentMessages     Message[]   @relation("Sender")
+  ReceivedMessages Message[]   @relation("Receiver")
+  GivenReviews     Review[]    @relation("Reviewer")
+  ReceivedReviews  Review[]    @relation("Reviewee")
+}
+
+model Company {
+  id          Int        @id
+  userId      Int        @unique
+  companyName String
+  industry    String
+  contactInfo String
+  User        User       @relation("Company", fields: [userId], references: [id])
+  campaigns   Campaign[]
+}
+
+model Influencer {
+  id                   Int             @id
+  userId               Int             @unique
+  influencerName       String
+  niche                String
+  followerDemographics String
+  User                 User            @relation("Influencer", fields: [userId], references: [id])
+  collaborations       Collaboration[]
+}
+
+model Campaign {
+  id                  Int             @id
+  companyId           Int
+  title               String
+  description         String
+  budget              Float
+  targetAudience      String
+  contentRequirements String
+  campaignDuration    String
+  status              String
+  company             Company         @relation(fields: [companyId], references: [id])
+  collaborations      Collaboration[]
+}
+
+model Collaboration {
+  id           Int        @id
+  campaignId   Int
+  influencerId Int
+  proposal     String
+  contract     String
+  status       String
+  campaign     Campaign   @relation(fields: [campaignId], references: [id])
+  influencer   Influencer @relation(fields: [influencerId], references: [id])
+  Payment      Payment[]
+}
+
+model Message {
+  id         Int      @id
+  senderId   Int
+  receiverId Int
+  content    String
+  timestamp  DateTime
+  sender     User     @relation("Sender", fields: [senderId], references: [id])
+  receiver   User     @relation("Receiver", fields: [receiverId], references: [id])
+}
+
+model Payment {
+  id              Int           @id
+  collaborationId Int
+  amount          Float
+  paymentDate     DateTime
+  paymentStatus   String
+  collaboration   Collaboration @relation(fields: [collaborationId], references: [id])
+}
+
+model Review {
+  id         Int      @id @default(autoincrement())
+  reviewerId Int
+  revieweeId Int
+  rating     Int
+  comment    String
+  timestamp  DateTime @default(now())
+
+  reviewer User @relation("Reviewer", fields: [reviewerId], references: [id])
+  reviewee User @relation("Reviewee", fields: [revieweeId], references: [id])
+}
+
+enum UserType {
+  Company
+  Influencer
+}
