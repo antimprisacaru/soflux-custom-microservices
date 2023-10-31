@@ -1,9 +1,9 @@
-import { createFeature, createReducer, on } from '@ngrx/store';
+import { createFeature, createReducer, createSelector, on } from '@ngrx/store';
 import { UserActions } from '../actions';
-import { StateLoadingStatus } from '@soflux/ui/shared/domain';
+import { Role, StateLoadingStatus, User } from '@soflux/ui/shared/domain';
 
 interface UserState {
-  currentUser: User;
+  currentUser: User | null;
   status: StateLoadingStatus;
 }
 
@@ -23,7 +23,26 @@ export const userFeature = createFeature({
     on(UserActions.loadCurrentUserSuccess, (state, { currentUser }) => ({
       ...state,
       status: StateLoadingStatus.LOADED,
-      currentUser
+      currentUser,
+    })),
+    on(UserActions.logout, (state) => ({
+      ...state,
+      status: StateLoadingStatus.INIT,
+      currentUser: null,
     }))
   ),
+  extraSelectors: ({ selectStatus, selectCurrentUser }) => ({
+    loading: createSelector(
+      selectStatus,
+      (status) => status === StateLoadingStatus.LOADING
+    ),
+    loaded: createSelector(
+      selectStatus,
+      (status) => status === StateLoadingStatus.LOADED
+    ),
+    currentUserRole: createSelector(
+      selectCurrentUser,
+      (currentUser) => currentUser?.role as Role
+    ),
+  }),
 });

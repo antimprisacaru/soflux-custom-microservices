@@ -1,0 +1,2 @@
+schema: 'api/core/src/config/schema.graphql'
+documents: '**/*.graphql'

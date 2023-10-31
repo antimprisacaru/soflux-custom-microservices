@@ -1,7 +1,7 @@
-# libs/ui/shared/domain
+# domain
 
 This library was generated with [Nx](https://nx.dev).
 
 ## Running unit tests
 
-Run `nx test libs/ui/shared/domain` to execute the unit tests.
+Run `nx test domain` to execute the unit tests.

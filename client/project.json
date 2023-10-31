@@ -16,7 +16,20 @@
         "polyfills": ["zone.js"],
         "tsConfig": "client/tsconfig.app.json",
         "assets": ["client/src/favicon.ico", "client/src/assets"],
-        "styles": ["client/src/styles.scss"],
+        "styles": [
+          "client/src/styles.scss",
+          "client/src/assets/styles/layout/layout.scss",
+          {
+            "input": "client/src/assets/styles/themes/lara-dark-indigo.scss",
+            "bundleName": "lara-dark-indigo",
+            "inject": false
+          },
+          {
+            "input": "client/src/assets/styles/themes/lara-light-indigo.scss",
+            "bundleName": "lara-light-indigo",
+            "inject": false
+          }
+        ],
         "scripts": []
       },
       "configurations": {
@@ -58,7 +71,7 @@
       },
       "defaultConfiguration": "development",
       "options": {
-        "proxyConfig": "client/proxy.conf.json"
+        "proxyConfig": "client/proxy.conf.ts"
       }
     },
     "extract-i18n": {

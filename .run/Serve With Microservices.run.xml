@@ -1,0 +1,14 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Serve With Microservices" type="CompoundRunConfigurationType">
+    <toRun name="docker-compose.yml: Compose Deployment" type="docker-deploy" />
+    <toRun name="Serve Client" type="NxRunConfigurationType" />
+    <toRun name="Serve Client" type="NxRunConfigurationType" />
+    <toRun name="Serve Core" type="NxRunConfigurationType" />
+    <toRun name="Serve Integration" type="NxRunConfigurationType" />
+    <toRun name="Serve Messaging" type="NxRunConfigurationType" />
+    <toRun name="Serve Payment" type="NxRunConfigurationType" />
+    <toRun name="Serve Review" type="NxRunConfigurationType" />
+    <toRun name="Serve User" type="NxRunConfigurationType" />
+    <method v="2" />
+  </configuration>
+</component>

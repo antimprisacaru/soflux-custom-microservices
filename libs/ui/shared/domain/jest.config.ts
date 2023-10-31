@@ -1,6 +1,6 @@
 /* eslint-disable */
 export default {
-  displayName: 'libs/ui/shared/domain',
+  displayName: 'domain',
   preset: '../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   coverageDirectory: '../../../../coverage/libs/ui/shared/domain',

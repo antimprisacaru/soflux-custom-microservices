@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Serve User" type="NxRunConfigurationType" singleton="false">
+    <option name="nx-projects" value="api/user" />
+    <option name="nx-targets" value="serve" />
+    <option name="nx-target-configuration" value="develop" />
+    <envs />
+    <option name="arguments" value="" />
+    <method v="2" />
+  </configuration>
+</component>

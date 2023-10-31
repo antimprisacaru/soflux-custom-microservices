@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Serve Payment" type="NxRunConfigurationType" singleton="false">
+    <option name="nx-projects" value="api/payment" />
+    <option name="nx-targets" value="serve" />
+    <option name="nx-target-configuration" value="develop" />
+    <envs />
+    <option name="arguments" value="" />
+    <method v="2" />
+  </configuration>
+</component>

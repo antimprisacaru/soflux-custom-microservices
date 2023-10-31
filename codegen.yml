@@ -1,0 +1,8 @@
+overwrite: true
+schema: 'http://0.0.0.0:3000/graphql'
+generates:
+  'libs/ui/shared/domain/src/lib/generated/schema.ts':
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-apollo-angular

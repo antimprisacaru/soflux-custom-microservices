@@ -9,29 +9,33 @@ import config from '../config';
 import { ConfigModule } from '@nestjs/config';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { OgmaModuleOptions } from '@ogma/nestjs-module/src/interfaces';
-import { AppResolver } from './app.resolver';
+import { FastifyReply, FastifyRequest } from 'fastify';
+import { AuthModule } from '@soflux/api/shared/auth';
+import resolvers from './resolvers';
+import { authServiceFactory, UserService } from '@soflux/api/shared/services';
+import { JwtService } from '@nestjs/jwt';
+import { join } from 'path';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ isGlobal: true, load: [config] }),
+    ConfigModule.forRoot({
+      isGlobal: true,
+      load: [config],
+    }),
     OgmaModule.forRoot({
-      service: {
-        color: true,
-        json: false,
-        application: 'Soflux Core',
-      },
-      interceptor: {
-        http: FastifyParser,
-        ws: false,
-        gql: GraphQLFastifyParser,
-        rpc: false,
-      },
-    } as OgmaModuleOptions),
+      color: true,
+      json: false,
+      application: 'Soflux Core'
+    }),
     GraphQLModule.forRoot<MercuriusDriverConfig>({
       driver: MercuriusDriver,
       graphiql: true,
       subscription: true,
-      context: (request: unknown, reply: unknown) => ({ request, reply }),
+      autoSchemaFile: join(process.cwd(), 'api/core/src/config/schema.gql'),
+      context: (request: FastifyRequest, reply: FastifyReply) => ({
+        request,
+        reply,
+      }),
     }),
     PrismaModule.forRoot({
       isGlobal: true,
@@ -44,10 +48,24 @@ import { AppResolver } from './app.resolver';
         ],
       },
     }),
+    // Microservice split will be done at a later time.
+    // ClientsModule.register({
+    //   clients: Object.values(Microservices).map((service: Microservices) => ({
+    //     name: service,
+    //     transport: getConfig<MicroServiceConfig>(service).transport
+    //   }))
+    // })
+    /*** Modules ***/
+    AuthModule,
   ],
   controllers: [],
   providers: [
-    AppResolver,
+    ...resolvers,
+    authServiceFactory,
+    UserService,
+    JwtService,
+    FastifyParser,
+    GraphQLFastifyParser,
     {
       provide: APP_INTERCEPTOR,
       useClass: OgmaInterceptor,

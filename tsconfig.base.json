@@ -15,9 +15,25 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@soflux/api/config": ["libs/api/config/src/index.ts"],
+      "@soflux/api/shared/auth": ["libs/api/shared/auth/src/index.ts"],
+      "@soflux/api/shared/config": ["libs/api/shared/config/src/index.ts"],
+      "@soflux/api/shared/domain": ["libs/api/shared/domain/src/index.ts"],
+      "@soflux/api/shared/services": ["libs/api/shared/services/src/index.ts"],
+      "@soflux/ui/features/browsing": [
+        "libs/ui/features/browsing/src/index.ts"
+      ],
+      "@soflux/ui/features/dashboard": [
+        "libs/ui/features/dashboard/src/index.ts"
+      ],
+      "@soflux/ui/features/landing": ["libs/ui/features/landing/src/index.ts"],
+      "@soflux/ui/features/setup": ["libs/ui/features/setup/src/index.ts"],
       "@soflux/ui/features/user": ["libs/ui/features/user/src/index.ts"],
+      "@soflux/ui/shared/common": ["libs/ui/shared/common/src/index.ts"],
+      "@soflux/ui/shared/components": [
+        "libs/ui/shared/components/src/index.ts"
+      ],
       "@soflux/ui/shared/domain": ["libs/ui/shared/domain/src/index.ts"],
+      "@soflux/ui/shared/routing": ["libs/ui/shared/routing/src/index.ts"],
       "@soflux/ui/shared/services": ["libs/ui/shared/services/src/index.ts"],
       "@soflux/ui/shared/store": ["libs/ui/shared/store/src/index.ts"]
     }

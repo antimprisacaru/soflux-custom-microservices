@@ -1,0 +1,36 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  id: ID!
+  username: String!
+  firstName: String!
+  lastName: String!
+  email: String!
+  role: String!
+}
+
+type JwtResponseBody {
+  expiration: Int!
+  expirationFormatted: String!
+  token: String!
+}
+
+type Query {
+  hello: String!
+  currentUser: User
+}
+
+type Mutation {
+  register(input: InputUserRegistration!): User!
+  login(email: String!, password: String!): JwtResponseBody!
+}
+
+input InputUserRegistration {
+  firstName: String!
+  lastName: String!
+  username: String!
+  email: String!
+  password: String!
+}

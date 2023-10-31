@@ -13,9 +13,10 @@ datasource db {
 model User {
   id               Int         @id
   username         String      @unique
+  firstName        String
+  lastName         String
   email            String      @unique
-  passwordHash     String
-  userType         UserType
+  role             Role
   Company          Company?    @relation("Company")
   Influencer       Influencer? @relation("Influencer")
   SentMessages     Message[]   @relation("Sender")
@@ -101,7 +102,9 @@ model Review {
   reviewee User @relation("Reviewee", fields: [revieweeId], references: [id])
 }
 
-enum UserType {
+enum Role {
+  Unassigned
   Company
   Influencer
+  Admin
 }

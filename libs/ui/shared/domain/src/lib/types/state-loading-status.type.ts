@@ -1,5 +1,5 @@
 export enum StateLoadingStatus {
-  'INIT',
-  'LOADING',
-  'LOADED',
+  INIT,
+  LOADING,
+  LOADED,
 }

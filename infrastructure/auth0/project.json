@@ -1,0 +1,17 @@
+{
+  "name": "infrastructure-auth0",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "infrastructure/auth0",
+  "targets": {
+    "up": {
+      "executor": "@nx-extend/pulumi:up",
+      "options": {}
+    },
+    "preview": {
+      "executor": "@nx-extend/pulumi:preview",
+      "options": {}
+    }
+  },
+  "tags": []
+}
